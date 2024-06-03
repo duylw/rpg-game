@@ -32,5 +32,8 @@
     <Image Include="Assets\Player\Textures\spritesheet.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\Skeleton\Textures\spritesheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

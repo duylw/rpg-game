@@ -155,6 +155,7 @@
     <Image Include="Assets\face.png" />
     <Image Include="Assets\Player\Textures\player.png" />
     <Image Include="Assets\Player\Textures\spritesheet.png" />
+    <Image Include="Assets\Skeleton\Textures\spritesheet.png" />
     <Image Include="templerun\Idle__000.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
