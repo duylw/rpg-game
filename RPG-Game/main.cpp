@@ -6,6 +6,8 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(800, 600), "RPG-Game");
 
+
+
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
@@ -23,7 +25,7 @@ int main()
 	}
 	else
 	{
-		std::cout << "Load texture failed!\n";
+		std::cout << "Load player texture failed!\n";
 		return 0;
 	}
 
