@@ -23,5 +23,14 @@
     <Image Include="templerun\Idle__000.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\face.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Player\Textures\player.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Player\Textures\spritesheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
