@@ -2,13 +2,31 @@
 #include <iostream>
 #include "Math.h"
 
+Player::Player():
+	playerSpeed{0.5f}, bulletSpeed{0.5f},
+	maxFireRate{0}, fireRateTimer{ 250.0f }
+{
+}
+
+Player::~Player() 
+{
+}
+
 void Player::Initialize()
 {
+
+	borderBox.setFillColor(sf::Color::Transparent);
+	borderBox.setOutlineColor(sf::Color::Red);
+	borderBox.setOutlineThickness(1);
+	borderBox.setPosition(sprite.getPosition());
+
+	size = sf::Vector2f(64, 64);
+
 }
 
 void Player::Load()
 {
-	if (texture.loadFromFile("Assets/PLayer/Textures/spritesheet.png"))
+	if (texture.loadFromFile("Assets/Player/Textures/spritesheet.png"))
 	{
 		std::cout << "PLayer Images Loaded!\n";
 		sprite.setTexture(texture);
@@ -16,7 +34,13 @@ void Player::Load()
 		int XIndex = 0;
 		int YIndex = 2;
 
-		sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
+		sprite.setTextureRect(sf::IntRect(XIndex * size.x, YIndex * size.y, size.x, size.y));
+
+		sprite.setScale(sf::Vector2f(1, 1));
+
+		borderBox.setSize(
+			sf::Vector2f(sprite.getScale().x * size.x, sprite.getScale().y * size.y)
+		);
 	}
 	else
 	{
@@ -26,39 +50,53 @@ void Player::Load()
 
 void Player::Draw(sf::RenderWindow &window)
 {
+	window.draw(borderBox);
 	window.draw(sprite);
 
-	for (int i = 0; i < bullets.size(); i++) 
+	for (Bullet& bullet : bullets)
 	{
-		window.draw(bullets[i]);
+		bullet.Draw(window);
 	}
 }
 
-void Player::Update(Skeleton &enemy)
+void Player::Update(float deltaTime, Skeleton &enemy, sf::RenderWindow &window)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) sprite.move(sf::Vector2f(0, -0.5f));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) sprite.move(sf::Vector2f(0, -1) * playerSpeed * deltaTime );
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) sprite.move(sf::Vector2f(-0.5f, 0));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) sprite.move(sf::Vector2f(-1, 0) * playerSpeed * deltaTime);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) sprite.move(sf::Vector2f(0, 0.5f));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) sprite.move(sf::Vector2f(0, 1) * playerSpeed * deltaTime);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) sprite.move(sf::Vector2f(0.5f, 0));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) sprite.move(sf::Vector2f(1, 0) * playerSpeed * deltaTime);
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	if (fireRateTimer < maxFireRate) fireRateTimer += deltaTime;
+
+	//Update bullet container 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && fireRateTimer >= maxFireRate)
 	{
-		sf::RectangleShape newBullet = sf::RectangleShape(sf::Vector2f(20, 20));
+		Bullet newBullet(sprite.getPosition(), sf::Mouse::getPosition(window));
+		newBullet.Load();
+		window.draw(newBullet.sprite);
 
 		bullets.push_back(newBullet);
-
-		int currentBulletInd = bullets.size() - 1;
-		bullets[currentBulletInd].setPosition(sprite.getPosition());
-
+		fireRateTimer = 0;
 	}
-
-	for (int i = 0; i < bullets.size(); i++)
+	
+	//Update each bullet
+	for (auto i = bullets.begin(); i != bullets.end(); )
 	{
-		sf::Vector2f bulletDirection = enemy.sprite.getPosition() - bullets[i].getPosition();
-		Math::normalize(bulletDirection);
-		bullets[i].move(bulletDirection * bulletSpeed);
+		if (i->Update(deltaTime, enemy)) 
+		{
+
+			i = bullets.erase(i);
+		}
+		else
+		{
+			std::advance(i, 1);
+		}
 	}
+
+	//Update Boundy Box
+	borderBox.setPosition(sprite.getPosition());
+
 }

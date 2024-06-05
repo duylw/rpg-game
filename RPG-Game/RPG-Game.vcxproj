@@ -24,6 +24,7 @@
     <ProjectGuid>{1d545c81-2773-44f9-8f9e-d91ed50a0d89}</ProjectGuid>
     <RootNamespace>RPGGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>SFML</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -149,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="FrameRate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -158,10 +161,14 @@
     <Image Include="Assets\face.png" />
     <Image Include="Assets\Player\Textures\player.png" />
     <Image Include="Assets\Player\Textures\spritesheet.png" />
+    <Image Include="Assets\Projectiles\bomber.png" />
+    <Image Include="Assets\Projectiles\upbomber.png" />
     <Image Include="Assets\Skeleton\Textures\spritesheet.png" />
     <Image Include="templerun\Idle__000.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="FrameRate.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Skeleton.h" />

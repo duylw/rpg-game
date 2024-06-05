@@ -1,8 +1,26 @@
 #include "Skeleton.h"
 #include <iostream>
 
-void Skeleton::Initialize() 
+Skeleton::Skeleton() :
+	skeletonSpeed{}
 {
+}
+
+Skeleton::~Skeleton()
+{
+}
+
+void Skeleton::Initialize()
+{
+	skeletonSpeed = 0.5f;
+
+	borderBox.setFillColor(sf::Color::Transparent);
+	borderBox.setOutlineColor(sf::Color::Blue);
+	borderBox.setOutlineThickness(1);
+	borderBox.setPosition(sprite.getPosition());
+
+	size = sf::Vector2f(64, 64);
+
 }
 
 void Skeleton::Load()
@@ -17,6 +35,12 @@ void Skeleton::Load()
 		int YIndex = 0;
 
 		sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
+
+		sprite.setScale(sf::Vector2f(1, 1));
+
+		borderBox.setSize(
+			sf::Vector2f(sprite.getScale().x * size.x, sprite.getScale().y * size.y)
+		);
 	}
 	else
 	{
@@ -25,12 +49,14 @@ void Skeleton::Load()
 	}
 }
 
-void Skeleton::Update()
+void Skeleton::Update(float deltaTime)
 {
+	borderBox.setPosition(sprite.getPosition());
 }
 
 void Skeleton::Draw(sf::RenderWindow &window)
 {
+	window.draw(borderBox);
 	window.draw(sprite);
 }
 
