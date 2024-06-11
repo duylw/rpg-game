@@ -1,13 +1,21 @@
 #include "Skeleton.h"
+#include "Math.h"
 #include <iostream>
 
+
 Skeleton::Skeleton() :
-	skeletonSpeed{}
+	skeletonSpeed{}, health{100}
 {
 }
 
 Skeleton::~Skeleton()
 {
+}
+
+void Skeleton::changeHealth(int hp)
+{
+	health += hp;
+	healthBar.setString(std::to_string(health));
 }
 
 void Skeleton::Initialize()
@@ -20,7 +28,6 @@ void Skeleton::Initialize()
 	borderBox.setPosition(sprite.getPosition());
 
 	size = sf::Vector2f(64, 64);
-
 }
 
 void Skeleton::Load()
@@ -28,15 +35,21 @@ void Skeleton::Load()
 	if (texture.loadFromFile("Assets/Skeleton/Textures/spritesheet.png"))
 	{
 		std::cout << "Enemy Images Loaded!\n";
+
 		sprite.setTexture(texture);
-		sprite.setPosition(sf::Vector2f(400, 500));
+		sprite.setPosition(sf::Vector2f(Math::getRandomNum(0, 1024 - 1), Math::getRandomNum(0, 768 - 1)));
+
+		if (font.loadFromFile("Assets/Fonts/arial.ttf"))
+		{
+			std::cout << "Font loaded\n";
+			healthBar.setFont(font);
+			healthBar.setString(std::to_string(health));
+		}
 
 		int XIndex = 0;
 		int YIndex = 0;
 
 		sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
-
-		sprite.setScale(sf::Vector2f(1, 1));
 
 		borderBox.setSize(
 			sf::Vector2f(sprite.getScale().x * size.x, sprite.getScale().y * size.y)
@@ -51,11 +64,18 @@ void Skeleton::Load()
 
 void Skeleton::Update(float deltaTime)
 {
-	borderBox.setPosition(sprite.getPosition());
+
+	if (!this->isDead())
+	{
+		healthBar.setPosition(sprite.getPosition());
+		borderBox.setPosition(sprite.getPosition());
+	}
+
 }
 
 void Skeleton::Draw(sf::RenderWindow &window)
 {
+	window.draw(healthBar);
 	window.draw(borderBox);
 	window.draw(sprite);
 }

@@ -16,3 +16,11 @@ bool Math::isColliding(sf::FloatRect obj1, sf::FloatRect obj2)
 
 	return (left < 0 && right > 0 && bottom > 0 && top < 0);
 }
+
+const int Math::getRandomNum(int start, int end) 
+{
+	std::random_device dev;
+	std::mt19937 rng(dev());
+	std::uniform_int_distribution<std::mt19937::result_type> dist6(start, end);
+	return dist6(rng);
+}

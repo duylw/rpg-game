@@ -15,22 +15,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Skeleton.cpp">
+    <ClCompile Include="src\Skeleton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
+    <ClCompile Include="src\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FrameRate.cpp">
+    <ClCompile Include="src\FrameRate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
+    <ClCompile Include="src\Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BulletManagment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,37 +59,75 @@
     <Image Include="Assets\face.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\Player\Textures\player.png">
+    <Image Include="assets\player\textures\player.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\Player\Textures\spritesheet.png">
+    <Image Include="assets\player\textures\spritesheet.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\Skeleton\Textures\spritesheet.png">
+    <Image Include="assets\skeleton\textures\spritesheet.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\Projectiles\bomber.png">
+    <Image Include="assets\projectiles\bomber.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\Projectiles\upbomber.png">
+    <Image Include="assets\projectiles\upbomber.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\projectiles\bullet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\World\Prision\Dungeon tileset.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\World\Prision\Tilesheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\world\prison\tilesheet.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="src\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Skeleton.h">
+    <ClInclude Include="src\Skeleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
+    <ClInclude Include="src\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FrameRate.h">
+    <ClInclude Include="src\FrameRate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
+    <ClInclude Include="src\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BulletManagment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\Maps\mapleverl.rmap" />
+    <None Include="assets\Maps\Level 1.rmap" />
+    <None Include="assets\Maps\newMap.rmap" />
   </ItemGroup>
 </Project>
